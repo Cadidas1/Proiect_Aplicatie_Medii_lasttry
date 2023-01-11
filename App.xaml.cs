@@ -1,11 +1,27 @@
-﻿namespace Proiect_Aplicatie_Medii_lasttry;
+﻿using System;
+using Proiect_Aplicatie_Medii_lasttry.Data;
+using System.IO;
 
-public partial class App : Application
+namespace Proiect_Aplicatie_Medii_lasttry;
+ public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
-
-		MainPage = new AppShell();
-	}
-}
+    static InchiriereDatabase database;
+    public static InchiriereDatabase Database
+    {
+        get
+        {
+            if (database == null)
+            {
+                database = new
+               InchiriereDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.
+               LocalApplicationData), "Inchiriere.db3"));
+            }
+            return database;
+        }
+    }
+    public App()
+    {
+        InitializeComponent();
+        MainPage = new AppShell();
+    }
+}
